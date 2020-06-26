@@ -1,0 +1,18 @@
+### PROTECT FILES ###
+<FilesMatch "\.(htaccess|htpasswd|ini|fla|psd|log|sh)$">
+Order Allow,Deny
+Deny from all
+</FilesMatch>
+
+Options +FollowSymLinks -MultiViews
+RewriteEngine On
+RewriteBase /
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME} !-l
+#RewriteRule ^ - [L]
+
+RewriteRule ^([^/\.]+)/?$ Jakub/Szkola/blog3/?page=$1 [L,QSA]
+RewriteRule ^([^/\.]+)/([^/\.]+)/?$ Jakub/Szkola/blog3/?page=$1&value=$2 [L,QSA]
